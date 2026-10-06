@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <title>Hostel Complaint Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" data-nav="home" aria-label="Home"><span class="brand-mark">H</span><span>HOSTEL<span class="brand-light"> / CARE</span></span></a>
+    <div class="topbar-right">
+      <span class="signed-in" id="signed-in-label" hidden></span>
+      <button class="button button-quiet" id="logout-button" type="button" hidden>Log out <span aria-hidden="true">↗</span></button>
+      <div class="guest-actions" id="guest-actions">
+        <button class="button button-quiet" type="button" data-nav="login">Log in</button>
+        <button class="button button-quiet" type="button" data-nav="admin-login">Warden</button>
+        <button class="button button-dark" type="button" data-nav="register">Register <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="view home-view" id="view-home">
+      <div class="home-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A better way to get things fixed</p>
+        <h1>Hostel life,<br><em>well looked after.</em></h1>
+        <p class="home-description">Report a problem in your residence, follow its progress, and hear back from your warden. Every request has a clear next step.</p>
+        <div class="home-actions"><button class="button button-dark button-large" type="button" data-nav="register">Register as a student <span aria-hidden="true">↗</span></button><button class="button button-text" type="button" data-nav="login">Student sign in <span aria-hidden="true">→</span></button></div>
+        <div class="home-footnote"><span class="live-dot"></span> A direct line between residents and hostel support</div>
+      </div>
+      <div class="home-art" aria-label="Three steps to getting a hostel issue resolved">
+        <div class="art-topline"><span>RESIDENCE SERVICES</span><span>STUDENT SUPPORT</span></div>
+        <div class="art-number">A clearer path<span> — TO A FIX</span></div>
+        <div class="art-rule"></div>
+        <div class="art-request"><span class="art-icon">01</span><div><strong>Tell us what needs attention</strong><small>Choose a category and share the details</small></div></div>
+        <div class="art-progress"><span></span><span></span><span></span></div>
+        <div class="art-steps"><span>SUBMIT</span><span>TRACK</span><span>RESOLVE</span></div>
+        <p class="art-note">Every issue deserves<br>a clear next step.</p>
+      </div>
+    </section>
+
+    <section class="view auth-view" id="view-login" hidden>
+      <div class="auth-aside"><p class="eyebrow">WELCOME BACK</p><h1>Good to have<br>you <em>here.</em></h1><p>Your hostel, a little more in order.</p></div>
+      <form class="form-panel" id="login-form">
+        <div class="form-heading"><p class="eyebrow">STUDENT ACCOUNT</p><h2>Sign in</h2><p>Use your student ID or email address.</p></div>
+        <label>Student ID or email<input name="identifier" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <p class="form-message" id="login-message" role="status"></p>
+        <button class="button button-dark button-submit" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        <p class="form-switch">New here? <button class="inline-link" type="button" data-nav="register">Create an account</button> · Warden? <button class="inline-link" type="button" data-nav="admin-login">Warden sign in</button></p>
+      </form>
+    </section>
+
+    <section class="view auth-view" id="view-admin-login" hidden>
+      <div class="auth-aside"><p class="eyebrow">WARDEN ACCESS</p><h1>Keep every<br>request <em>moving.</em></h1><p>Review and update hostel complaints.</p></div>
+      <form class="form-panel" id="admin-login-form">
+        <div class="form-heading"><p class="eyebrow">WARDEN ACCOUNT</p><h2>Warden sign in</h2><p>Use your administrator ID or email.</p></div>
+        <label>Admin ID or email<input name="identifier" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <p class="form-message" id="admin-login-message" role="status"></p>
+        <button class="button button-dark button-submit" type="submit">Sign in <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+
+    <section class="view auth-view" id="view-register" hidden>
+      <div class="auth-aside"><p class="eyebrow">A BETTER STAY STARTS HERE</p><h1>Make room<br>for <em>better.</em></h1><p>Join your residence community and keep every request on track.</p></div>
+      <form class="form-panel" id="register-form">
+        <div class="form-heading"><p class="eyebrow">STUDENT ACCOUNT</p><h2>Create account</h2><p>Set up your student and hostel details.</p></div>
+        <div class="field-grid">
+          <label class="field-wide">Student name<input name="name" autocomplete="name" maxlength="100" required></label>
+          <label>Student ID<input name="student_id" autocomplete="username" maxlength="60" required></label>
+          <label>Email address<input name="email" type="email" autocomplete="email" required></label>
+          <label>Password<input name="password" type="password" minlength="8" autocomplete="new-password" required><small>At least 8 characters</small></label>
+          <label>Confirm password<input name="password_confirmation" type="password" minlength="8" autocomplete="new-password" required></label>
+          <label>Hostel block<input name="hostel_block" maxlength="60" required></label>
+          <label>Room number<input name="room_number" maxlength="30" required></label>
+        </div>
+        <p class="form-message" id="register-message" role="status"></p>
+        <button class="button button-dark button-submit" type="submit">Create account <span aria-hidden="true">→</span></button>
+        <p class="form-switch">Already registered? <button class="inline-link" type="button" data-nav="login">Sign in</button></p>
+      </form>
+    </section>
+
+    <section class="view workspace-view" id="view-dashboard" hidden>
+      <aside class="side-nav student-side-nav"><p class="side-label">STUDENT SPACE</p><button class="side-link active" type="button" data-nav="dashboard"><span>01</span> Overview</button><button class="side-link" type="button" data-nav="new-complaint"><span>02</span> Submit complaint</button><button class="side-link" type="button" data-nav="complaints"><span>03</span> My complaints</button><button class="side-link" type="button" data-nav="feedback"><span>04</span> Feedback</button><div class="side-bottom"><span class="live-dot"></span> RESIDENCE SUPPORT</div></aside>
+      <div class="workspace-content">
+        <div class="page-heading"><div><p class="eyebrow" id="dashboard-date">STUDENT OVERVIEW</p><h1>Good day, <em id="student-first-name">there</em>.</h1><p class="page-subtitle" id="student-room-line"></p></div><button class="button button-dark" type="button" data-nav="new-complaint">Submit complaint <span aria-hidden="true">+</span></button></div>
+        <div class="stats-grid"><article class="stat-item"><span class="stat-label">TOTAL COMPLAINTS</span><strong id="count-total">0</strong></article><article class="stat-item stat-pending"><span class="stat-label">PENDING</span><strong id="count-pending">0</strong></article><article class="stat-item stat-progress"><span class="stat-label">IN PROGRESS</span><strong id="count-in-progress">0</strong></article><article class="stat-item stat-resolved"><span class="stat-label">RESOLVED</span><strong id="count-resolved">0</strong></article></div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR REQUESTS</p><h2>Recent complaints</h2></div><button class="button button-text" type="button" data-nav="complaints">View all <span aria-hidden="true">→</span></button></div>
+        <div id="recent-complaints" class="complaint-list"></div>
+      </div>
+    </section>
+
+    <section class="view workspace-view" id="view-new-complaint" hidden>
+      <aside class="side-nav student-side-nav"><p class="side-label">STUDENT SPACE</p><button class="side-link" type="button" data-nav="dashboard"><span>01</span> Overview</button><button class="side-link active" type="button" data-nav="new-complaint"><span>02</span> Submit complaint</button><button class="side-link" type="button" data-nav="complaints"><span>03</span> My complaints</button><button class="side-link" type="button" data-nav="feedback"><span>04</span> Feedback</button><div class="side-bottom"><span class="live-dot"></span> RESIDENCE SUPPORT</div></aside>
+      <div class="workspace-content narrow-content"><div class="page-heading"><div><p class="eyebrow">STUDENT SPACE / NEW REQUEST</p><h1>What needs <em>attention?</em></h1><p class="page-subtitle">Your warden will review the details and update your request.</p></div></div>
+        <form class="form-panel workspace-form" id="complaint-form"><div class="field-grid">
+          <label>Category<select name="category" required><option value="">Choose a category</option><option>Electrical</option><option>Plumbing</option><option>Cleaning</option><option>Food</option><option>Water</option><option>Wi-Fi</option><option>Room Maintenance</option><option>Other</option></select></label>
+          <label>Complaint title<input name="title" maxlength="160" placeholder="e.g. Light not working" required></label>
+          <label class="field-wide">Description<textarea name="description" rows="5" placeholder="Tell us what happened and where." required></textarea></label>
+          <label>Hostel block<input name="hostel_block" id="complaint-block" maxlength="60" required></label><label>Room number<input name="room_number" id="complaint-room" maxlength="30" required></label>
+        </div><p class="form-message" id="complaint-message" role="status"></p><div class="form-actions"><button class="button button-dark" type="submit">Submit complaint <span aria-hidden="true">→</span></button><button class="button button-quiet" type="button" data-nav="dashboard">Cancel</button></div></form>
+      </div>
+    </section>
+
+    <section class="view workspace-view" id="view-complaints" hidden>
+      <aside class="side-nav student-side-nav"><p class="side-label">STUDENT SPACE</p><button class="side-link" type="button" data-nav="dashboard"><span>01</span> Overview</button><button class="side-link" type="button" data-nav="new-complaint"><span>02</span> Submit complaint</button><button class="side-link active" type="button" data-nav="complaints"><span>03</span> My complaints</button><button class="side-link" type="button" data-nav="feedback"><span>04</span> Feedback</button><div class="side-bottom"><span class="live-dot"></span> RESIDENCE SUPPORT</div></aside>
+      <div class="workspace-content"><div class="page-heading"><div><p class="eyebrow">STUDENT SPACE / REQUEST HISTORY</p><h1>My <em>complaints.</em></h1><p class="page-subtitle">Status, dates, and resolution notes for your reports.</p></div><button class="button button-dark" type="button" data-nav="new-complaint">Submit complaint <span aria-hidden="true">+</span></button></div><div id="all-complaints" class="complaint-list"></div></div>
+    </section>
+
+    <section class="view workspace-view" id="view-feedback" hidden>
+      <aside class="side-nav student-side-nav"><p class="side-label">STUDENT SPACE</p><button class="side-link" type="button" data-nav="dashboard"><span>01</span> Overview</button><button class="side-link" type="button" data-nav="new-complaint"><span>02</span> Submit complaint</button><button class="side-link" type="button" data-nav="complaints"><span>03</span> My complaints</button><button class="side-link active" type="button" data-nav="feedback"><span>04</span> Feedback</button><div class="side-bottom"><span class="live-dot"></span> RESIDENCE SUPPORT</div></aside>
+      <div class="workspace-content"><div class="page-heading"><div><p class="eyebrow">STUDENT SPACE / FEEDBACK</p><h1>Close the <em>loop.</em></h1><p class="page-subtitle">Share a rating and comment after a complaint is resolved.</p></div></div><div id="feedback-list" class="feedback-list"></div></div>
+    </section>
+
+    <section class="view workspace-view" id="view-admin" hidden>
+      <aside class="side-nav admin-side-nav"><p class="side-label">WARDEN SPACE</p><div class="warden-mark">W</div><p class="warden-caption">HOSTEL WARDEN</p><button class="side-link active" type="button" data-nav="dashboard"><span>01</span> Complaint desk</button><div class="side-bottom"><span class="live-dot"></span> RESIDENCE SUPPORT</div></aside>
+      <div class="workspace-content"><div class="page-heading"><div><p class="eyebrow">WARDEN SPACE / ALL REQUESTS</p><h1>Complaint <em>desk.</em></h1><p class="page-subtitle">Review student reports and keep each request moving.</p></div><span class="admin-count" id="admin-total">0 requests</span></div>
+        <div class="stats-grid admin-stats"><article class="stat-item"><span class="stat-label">TOTAL</span><strong id="admin-count-total">0</strong></article><article class="stat-item stat-pending"><span class="stat-label">PENDING</span><strong id="admin-count-pending">0</strong></article><article class="stat-item stat-progress"><span class="stat-label">IN PROGRESS</span><strong id="admin-count-progress">0</strong></article><article class="stat-item stat-resolved"><span class="stat-label">RESOLVED</span><strong id="admin-count-resolved">0</strong></article></div>
+        <div class="filter-row"><label for="admin-search">SEARCH</label><input id="admin-search" type="search" placeholder="Complaint, title, student ID"><label for="admin-category-filter">CATEGORY</label><select id="admin-category-filter"><option value="">All categories</option><option>Electrical</option><option>Plumbing</option><option>Cleaning</option><option>Food</option><option>Water</option><option>Wi-Fi</option><option>Room Maintenance</option><option>Other</option></select><label for="admin-filter">STATUS</label><select id="admin-filter"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option><option>Rejected</option></select></div>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>REQUEST</th><th>STUDENT / ROOM</th><th>DESCRIPTION</th><th>DATE</th><th>STATUS</th><th>REMARKS</th><th></th></tr></thead><tbody id="admin-complaints"></tbody></table></div><p class="form-message" id="admin-message" role="status"></p>
+      </div>
+    </section>
+
+    <dialog class="details-dialog" id="complaint-dialog"><div class="dialog-heading"><p class="eyebrow">COMPLAINT DETAILS</p><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div><div id="complaint-dialog-content"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+  <footer class="site-footer"><span>HOSTEL / CARE</span><span>RESIDENCE SERVICES · <span id="footer-year"></span></span></footer>
+</body>
+</html>
