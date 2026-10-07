@@ -24,6 +24,9 @@ FRONTEND_DIR = ROOT_DIR / "FRONTEND"
 ROOT_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = ROOT_DIR
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
+@app.route("/")
+def home():
+    return send_from_directory(str(FRONTEND_DIR), "index.html")
 app.config.update(
     SECRET_KEY=os.getenv("FLASK_SECRET_KEY", "change-this-development-secret"),
     SESSION_COOKIE_HTTPONLY=True,
