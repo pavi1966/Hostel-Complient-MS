@@ -19,10 +19,10 @@ from db import (
     query_all,
     query_one,
 )
-
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = ROOT_DIR / "FRONTEND"
-
+ROOT_DIR = Path(__file__).resolve().parent
+FRONTEND_DIR = ROOT_DIR
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 app.config.update(
     SECRET_KEY=os.getenv("FLASK_SECRET_KEY", "change-this-development-secret"),
